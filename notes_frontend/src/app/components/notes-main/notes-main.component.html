@@ -1,0 +1,54 @@
+<div class="main-section">
+  <div class="note-content-container">
+    <ng-container *ngIf="!editing">
+      <ng-container *ngIf="selectedNote; else noNoteSelected">
+        <div class="note-toolbar">
+          <button class="btn" (click)="startEditMode()" [disabled]="loading" aria-label="Edit">Edit</button>
+          <button class="btn danger" (click)="onDelete()" [disabled]="loading" aria-label="Delete">Delete</button>
+        </div>
+        <div class="note-view">
+          <h3>{{ selectedNote.title || '(Untitled Note)' }}</h3>
+          <div class="note-date">
+            Last updated: 
+            {{ selectedNote.updated_at | date:'short' }}
+          </div>
+          <pre class="note-content">{{ selectedNote.content }}</pre>
+        </div>
+      </ng-container>
+      <ng-template #noNoteSelected>
+        <section class="empty-note-state">
+          <span *ngIf="!loading">No note selected.</span>
+        </section>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="editing">
+      <form class="note-edit-form" (ngSubmit)="onSave()">
+        <input
+          name="title"
+          type="text"
+          [(ngModel)]="editTitle"
+          maxlength="100"
+          placeholder="Note title"
+          class="title-input"
+          [disabled]="loading"
+        />
+        <textarea
+          [(ngModel)]="editContent"
+          name="content"
+          rows="10"
+          placeholder="Type your note..."
+          class="content-input"
+          [disabled]="loading"
+        ></textarea>
+        <div class="edit-toolbar">
+          <button class="btn primary" type="submit" [disabled]="loading">
+            Save
+          </button>
+          <button class="btn" type="button" (click)="cancelEdit()" [disabled]="loading">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </ng-container>
+  </div>
+</div>

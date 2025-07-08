@@ -1,0 +1,146 @@
+.sidebar {
+  width: 260px;
+  background: #fff;
+  border-right: 1px solid #ececec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.325rem;
+  font-weight: 600;
+  color: #1976d2;
+  letter-spacing: 0.02rem;
+}
+
+.create-btn {
+  background-color: #ffeb3b;
+  color: #424242;
+  border: none;
+  border-radius: 2.5rem;
+  padding: 0.4rem 1.1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(33, 150, 243, 0.075);
+}
+
+.create-btn:hover,
+.create-btn:focus {
+  background: #ffe43b;
+  box-shadow: 0 2px 8px 0 rgba(33, 150, 243, 0.13);
+}
+
+.sidebar-search {
+  margin-block: 1.2rem 1.4rem;
+}
+.sidebar-search input {
+  width: 100%;
+  border: 1px solid #ececec;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.sidebar-search input:focus {
+  border-color: #1976d2;
+}
+
+.sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+}
+.sidebar-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-list li {
+  padding: 0.6rem 0.5rem 0.6rem 0.75rem;
+  border-radius: 1.5rem;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #424242;
+  cursor: pointer;
+  transition: background 0.18s;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+.sidebar-list li.active,
+.sidebar-list li:hover {
+  background: #1976d2;
+  color: #fff;
+}
+.sidebar-list li:active {
+  background: #1976d2dd;
+}
+.note-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-loading,
+.sidebar-empty {
+  color: #999;
+  text-align: center;
+  margin-top: 1.65rem;
+  font-size: 1rem;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 650px) {
+  .sidebar {
+    min-width: unset;
+    width: 100vw;
+    border-right: none;
+    border-bottom: 1px solid #ececec;
+    min-height: unset;
+    flex-direction: row;
+    padding: 0.5rem 0.5rem 0.5rem 0.7rem;
+    align-items: center;
+    z-index: 9999;
+    gap: 1.1rem;
+    position: sticky;
+    top: 0;
+    background: #fff;
+  }
+  .sidebar-header {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  .sidebar-list {
+    flex: unset;
+    max-width: 45vw;
+    overflow-x: auto;
+    overflow-y: unset;
+  }
+  .sidebar-list ul {
+    display: flex;
+    gap: 0.1rem;
+    flex-direction: row;
+  }
+  .sidebar-list li {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    border-radius: 0.7rem;
+    padding: 0.4rem 0.6rem;
+    min-width: fit-content;
+  }
+}

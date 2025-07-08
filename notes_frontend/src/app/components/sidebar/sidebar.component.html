@@ -1,0 +1,33 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>NoteEase</h2>
+    <button class="create-btn" (click)="onCreate()" title="Create new note">+ Add</button>
+  </div>
+  <div class="sidebar-search">
+    <input 
+      type="text" 
+      placeholder="Search notes..."
+      [(ngModel)]="searchValue"
+      (input)="onSearchInput($event)"
+      [disabled]="loading"
+      aria-label="Search notes"
+    />
+  </div>
+  <nav class="sidebar-list">
+    <ul>
+      <li 
+        *ngFor="let note of notes" 
+        [class.active]="note.id === selectedNoteId"
+        (click)="onSelectNote(note.id!)"
+      >
+        <span class="note-title">{{ note.title || '(Untitled Note)' }}</span>
+      </li>
+    </ul>
+    <div class="sidebar-empty" *ngIf="!notes.length && !loading">
+      <span>No notes found</span>
+    </div>
+    <div *ngIf="loading" class="sidebar-loading">
+      <span>Loading...</span>
+    </div>
+  </nav>
+</aside>
