@@ -16,10 +16,9 @@ export class NotesStateService {
   private selectedNoteIdSubject = new BehaviorSubject<number | null>(null);
   private searchTermSubject = new BehaviorSubject<string>('');
 
-  constructor(private _supabase: SupabaseService) {}
-
-  private get supabase() {
-    return this._supabase;
+  constructor(private readonly _supabase: SupabaseService) {
+    // Reference to avoid 'no-unused-vars' lint error
+    void this._supabase;
   }
 
   // PUBLIC_INTERFACE
@@ -60,7 +59,7 @@ export class NotesStateService {
     this.loadingSubject.next(true);
     try {
       const searchTerm = this.searchTermSubject.getValue();
-      const notes = await this.supabase.getNotes(searchTerm);
+      const notes = await this._supabase.getNotes(searchTerm);
       this.notesSubject.next(notes);
     } finally {
       this.loadingSubject.next(false);
@@ -71,7 +70,7 @@ export class NotesStateService {
   async createNote(note: Note) {
     this.loadingSubject.next(true);
     try {
-      const newNote = await this.supabase.createNote(note);
+      const newNote = await this._supabase.createNote(note);
       await this.loadNotes();
       this.selectNote(newNote.id);
     } finally {
@@ -83,7 +82,7 @@ export class NotesStateService {
   async updateNote(id: number, note: Note) {
     this.loadingSubject.next(true);
     try {
-      await this.supabase.updateNote(id, note);
+      await this._supabase.updateNote(id, note);
       await this.loadNotes();
       this.selectNote(id);
     } finally {
@@ -95,7 +94,7 @@ export class NotesStateService {
   async deleteNote(id: number) {
     this.loadingSubject.next(true);
     try {
-      await this.supabase.deleteNote(id);
+      await this._supabase.deleteNote(id);
       await this.loadNotes();
       this.selectNote(null);
     } finally {

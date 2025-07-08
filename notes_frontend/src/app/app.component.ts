@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { NotesStateService } from './state/notes.state';
 import { Observable } from 'rxjs';
 import { Note } from './models/note.model';
@@ -10,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SidebarComponent, NotesMainComponent],
+  imports: [CommonModule, SidebarComponent, NotesMainComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
